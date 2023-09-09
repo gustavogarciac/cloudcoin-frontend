@@ -5,7 +5,6 @@ import { Quicksand, Lato } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import Sidebar from "@/components/shared/Sidebar";
 import Bottombar from "@/components/shared/Bottombar";
-import Header from "@/components/shared/Header";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -37,10 +36,7 @@ export default function RootLayout({
           <div className="flex h-full w-full flex-col">
             <div className="flex h-full w-full">
               <Sidebar />
-              <div>
-                <Header />
-                {children}
-              </div>
+              <div className="w-full bg-zinc-50 px-8">{children}</div>
             </div>
             <Bottombar />
           </div>

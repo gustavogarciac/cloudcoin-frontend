@@ -11,7 +11,7 @@ function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex flex-col gap-6 border-r border-zinc-200 p-8 max-md:hidden">
+    <aside className="md flex flex-col gap-6 border-r border-zinc-200 p-8 max-md:hidden md:max-w-[250px] lg:w-full">
       <Link href={"/"} className="flex items-center gap-6">
         <Image
           src={"/assets/logo.svg"}
@@ -66,9 +66,7 @@ function Sidebar() {
               width={24}
               height={24}
             />
-            <p className="font-quicksand text-zinc-900 max-lg:hidden">
-              Sair do aplicativo
-            </p>
+            <p className="font-quicksand text-zinc-900 max-lg:hidden">Logout</p>
           </div>
         </SignOutButton>
       </SignedIn>

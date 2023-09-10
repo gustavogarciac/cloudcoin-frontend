@@ -2,38 +2,25 @@
 
 import { api } from "@/services/api";
 import { useEffect, useState } from "react";
+import { format } from "date-fns";
 
-// const transactions = [
-//   {
-//     _id: "231muedi912h3021dn0128bns081",
-//     reciever: "Tesco Market",
-//     type: "Shopping",
-//     date: "13 Dec 2022",
-//     amount: -5.98,
-//   },
-//   {
-//     _id: "dhwb19ty3vb19o2ny39170db0a",
-//     reciever: "eBook Sales",
-//     type: "Sales",
-//     date: "11 Dec 2022",
-//     amount: 10.24,
-//   },
-// ];
 interface Transactions {
-  _id: string;
-  reciever: string;
-  type: string;
+  id: string;
+  receiver: string;
+  category: string;
   title: string;
   description: string;
   amount: number;
-  date: string;
+  created_at: Date;
 }
 const TransactionHistory = ({ userId }: { userId: String }) => {
   const [transactions, setTransactions] = useState<Transactions[]>([]);
   useEffect(() => {
     async function fetchTransactions() {
       try {
-        const response = await api.get(`/transactions/${userId}`);
+        const response = await api.get(
+          `/transactions/b574b781-c28d-471b-affe-c7de2dac9234`,
+        );
         const transactionsArray: Transactions[] = response.data;
         setTransactions(transactionsArray);
       } catch (error) {
@@ -51,21 +38,23 @@ const TransactionHistory = ({ userId }: { userId: String }) => {
             <th className="text-left font-quicksand text-zinc-700 ">
               Reciever
             </th>
-            <th className="text-left font-quicksand text-zinc-700 ">Type</th>
+            <th className="text-left font-quicksand text-zinc-700 ">
+              Category
+            </th>
             <th className="text-left font-quicksand text-zinc-700 ">Date</th>
             <th className="text-left font-quicksand text-zinc-700 ">Amount</th>
           </tr>
           {transactions &&
             transactions.map((transaction) => (
-              <tr key={transaction._id}>
+              <tr key={transaction.id}>
                 <td className="border-t-zic-400 border-b border-t py-2">
-                  {transaction?.reciever}
+                  {transaction?.receiver}
                 </td>
                 <td className="border-t-zic-400 border-b border-t py-2">
-                  {transaction?.type}
+                  {transaction?.category}
                 </td>
                 <td className="border-t-zic-400 border-b border-t py-2">
-                  {transaction?.date}
+                  {format(transaction?.created_at, "dd'/'MM'/'yyyy")}
                 </td>
                 <td className="border-t-zic-400 border-b border-t py-2">
                   {transaction?.amount}

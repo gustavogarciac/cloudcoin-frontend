@@ -44,6 +44,7 @@ function Sidebar() {
                 alt={link.label}
                 width={24}
                 height={24}
+                title={link.label}
               />
               <p
                 className={`font-quicksand text-zinc-800 max-lg:hidden ${
@@ -62,9 +63,11 @@ function Sidebar() {
           <div className="flex items-center justify-center gap-2">
             <Image
               src={"/assets/logout.svg"}
-              alt="Sair da aplicação"
+              alt="Logout"
+              title="Logout"
               width={24}
               height={24}
+              className="cursor-pointer"
             />
             <p className="font-quicksand text-zinc-900 max-lg:hidden">Logout</p>
           </div>

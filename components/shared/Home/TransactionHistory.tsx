@@ -1,7 +1,4 @@
-"use client";
-
 import { api } from "@/services/api";
-import { useEffect, useState } from "react";
 import { format } from "date-fns";
 
 interface Transactions {
@@ -13,22 +10,34 @@ interface Transactions {
   amount: number;
   created_at: Date;
 }
-const TransactionHistory = ({ userId }: { userId: String }) => {
-  const [transactions, setTransactions] = useState<Transactions[]>([]);
-  useEffect(() => {
-    async function fetchTransactions() {
-      try {
-        const response = await api.get(
-          `/transactions/b574b781-c28d-471b-affe-c7de2dac9234`,
-        );
-        const transactionsArray: Transactions[] = response.data;
-        setTransactions(transactionsArray);
-      } catch (error) {
-        console.error("Fetch error: ", error);
-      }
+const TransactionHistory = async ({ userId }: { userId: String }) => {
+  // const [transactions, setTransactions] = useState<Transactions[]>([]);
+  // useEffect(() => {
+  //   async function fetchTransactions() {
+  //     try {
+  //       const response = await api.get(
+  //         `/transactions/b574b781-c28d-471b-affe-c7de2dac9234`,
+  //       );
+  //       const transactionsArray: Transactions[] = response.data;
+  //       setTransactions(transactionsArray);
+  //     } catch (error) {
+  //       console.error("Fetch error: ", error);
+  //     }
+  //   }
+  //   fetchTransactions();
+  // }, [userId]);
+  async function fetchTransactions() {
+    try {
+      const response = await api.get(
+        `/transactions/b574b781-c28d-471b-affe-c7de2dac9234`,
+      );
+      const transactionsArray: Transactions[] = response.data;
+      return transactionsArray;
+    } catch (error) {
+      console.error("Fetch error: ", error);
     }
-    fetchTransactions();
-  }, [userId]);
+  }
+  const transactions = await fetchTransactions();
   return (
     <div>
       <h1>Transaction history</h1>

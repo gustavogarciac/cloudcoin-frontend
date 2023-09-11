@@ -1,34 +1,48 @@
-"use client";
+// "use client";
 
 import { api } from "@/services/api";
 import { MountainSnow, Plus } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { format } from "date-fns";
 
 interface Goal {
   id: string;
   title: string;
   description: string;
-  created_at: string;
+  created_at: Date;
   user_id: string;
   current_amount: number;
   wished_amount: number;
-  initial_date: string;
+  initial_date: Date;
   end_date: string;
-  category: string
+  category: string;
 }
 
-export default function Goals() {
-  const [goals, setGoals] = useState<Goal[]>([]);
+export default async function Goals() {
+  // const [goals, setGoals] = useState<Goal[]>([]);
 
-  useEffect(() => {
-    const fetchGoals = async () => {
-      const response = await api.get('/goals/index/6c9e5123-8ff8-40f6-9cdb-9d0ff9b25f34')
-      setGoals(response.data)
+  // useEffect(() => {
+  //   const fetchGoals = async () => {
+  //     const response = await api.get(
+  //       "/goals/index/b574b781-c28d-471b-affe-c7de2dac9234",
+  //     );
+  //     setGoals(response.data);
+  //   };
+
+  //   fetchGoals();
+  // }, []);
+  async function fetchGoals() {
+    try {
+      const response = await api.get(
+        "/goals/index/b574b781-c28d-471b-affe-c7de2dac9234",
+      );
+      const goalsArray: Goal[] = response.data;
+      return goalsArray;
+    } catch (error) {
+      console.error("Error fetching goals: ", error);
     }
-
-    fetchGoals()
-  }, [])
+  }
+  const goals = await fetchGoals();
 
   return (
     <div className="flex flex-col">
@@ -44,21 +58,29 @@ export default function Goals() {
         </Link>
       </div>
 
-      {goals.map((goal) => (
-        <article className="flex max-w-[150px] flex-col gap-8 rounded-md bg-white p-4 shadow" key={goal.id}>
-          <div className="flex flex-col">
-            <span className="font-quicksand text-lg font-bold leading-none text-zinc-600 ">
-              $ {goal.current_amount}
-            </span>
-            <small className="text-sm text-zinc-500">12/20/23</small>
-          </div>
+      <div className="flex items-center gap-2">
+        {goals &&
+          goals.map((goal) => (
+            <article
+              className="flex w-full max-w-[150px] flex-col gap-8 rounded-md bg-white p-4 shadow"
+              key={goal.id}
+            >
+              <div className="flex flex-col">
+                <span className="font-quicksand text-lg font-bold leading-none text-zinc-600 ">
+                  $ {goal.current_amount}
+                </span>
+                <small className="text-sm text-zinc-500">
+                  {format(goal?.initial_date, "dd'/'MM'/'yyyy")}
+                </small>
+              </div>
 
-          <div className="flex flex-col">
-            <MountainSnow className="text-blue-600" />
-            <h2 className="font-quicksand text-lg">{goal.category}</h2>
-          </div>
-        </article>
-      ))}
+              <div className="flex flex-col">
+                <MountainSnow className="text-blue-600" />
+                <h2 className="font-quicksand text-lg">{goal.category}</h2>
+              </div>
+            </article>
+          ))}
+      </div>
     </div>
   );
 }

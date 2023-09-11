@@ -154,6 +154,7 @@ const AccountProfile = ({ user }: Props) => {
                   rows={10}
                   placeholder="Tell us a little bit about you!"
                   className="resize-none"
+                  {...field}
                 />
               </FormControl>
               <FormMessage />

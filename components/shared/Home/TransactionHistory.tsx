@@ -45,7 +45,7 @@ const TransactionHistory = async ({ userId }: { userId: String }) => {
         <tbody>
           <tr>
             <th className="text-left font-quicksand text-zinc-700 ">
-              Reciever
+              Receiver
             </th>
             <th className="text-left font-quicksand text-zinc-700 ">
               Category

@@ -5,11 +5,11 @@ import Header from "@/components/shared/Header";
 import TransactionHistory from "@/components/shared/Home/TransactionHistory";
 import Goals from "@/components/shared/Home/Goals";
 import Cards from "@/components/shared/Home/Cards";
+import { Social } from "@/components/shared/Home/Social";
 
 async function Home() {
   const user = await currentUser();
   if (!user) redirect("/sign-in");
-  console.log(user);
 
   return (
     <div className="w-full">
@@ -18,6 +18,7 @@ async function Home() {
         <Cards userFirstName={user.firstName!} />
         <TransactionHistory userId={user.id} />
         <Goals />
+        <Social />
       </main>
     </div>
   );

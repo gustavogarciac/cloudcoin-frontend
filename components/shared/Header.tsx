@@ -4,7 +4,7 @@ import React from "react";
 
 function Header() {
   return (
-    <header className="flex items-center justify-between py-8">
+    <header className="flex items-center justify-between gap-6 py-8">
       <div>
         <h1 className="font-quicksand text-xl font-bold text-zinc-900">
           Your financial dashboard

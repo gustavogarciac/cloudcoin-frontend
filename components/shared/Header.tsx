@@ -13,7 +13,7 @@ function Header() {
           Get summary of your weekly transactions here
         </p>
       </div>
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-4">
         <Image
           src={"/assets/mail.svg"}
           alt="Bate Papo"

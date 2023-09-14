@@ -9,7 +9,7 @@ function Bottombar() {
   const pathname = usePathname();
 
   return (
-    <nav className="mt-2 flex flex-1 justify-around gap-4 border-t border-zinc-200 p-2 md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 mt-2 flex flex-1 justify-around gap-4 border-t border-zinc-200 bg-white p-2 md:hidden">
       {sidebarLinks.map((link) => {
         const isActive =
           (pathname.includes(link.route) && link.route.length > 1) ||

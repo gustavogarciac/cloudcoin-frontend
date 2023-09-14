@@ -14,8 +14,9 @@ async function Home() {
   return (
     <div className="w-full">
       <Header />
-      <main className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <main className="grid grid-cols-1 gap-6 lg:grid-cols-2 ">
         <Cards userFirstName={user.firstName!} />
+        <TransactionHistory userId={user.id} />
         <TransactionHistory userId={user.id} />
         <Goals />
         <Social />

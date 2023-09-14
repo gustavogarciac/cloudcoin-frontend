@@ -6,9 +6,11 @@ import Image from "next/image";
 
 export const Social = () => {
   return (
-    <div className="flex gap-4 items-center">
-      <div className="flex-1 bg-white rounded-md shadow p-4">
-        <h1 className="font-quicksand text-lg text-zinc-900 font-bold mb-2">New transaction</h1>
+    <div className="flex items-center gap-4 ">
+      <div className="flex-1 rounded-md bg-white p-4 shadow">
+        <h1 className="mb-2 font-quicksand text-lg font-bold text-zinc-900">
+          New transaction
+        </h1>
 
         <div className="flex items-center gap-3">
           <Avatar>
@@ -44,9 +46,17 @@ export const Social = () => {
         </form>
       </div>
 
-      <div className="h-36 w-32 bg-red-800 rounded-md relative p-4 overflow-hidden">
-        <h1 className="font-quicksand text-sm text-zinc-50 font-bold leading-snug absolute bottom-2 z-10">Get great offers!</h1>
-        <Image src={'/assets/popup.svg'} height={120} width={120} alt="popup" className="absolute top-[-8px] left-[-8px]"/>
+      <div className="relative hidden h-36 w-32 overflow-hidden rounded-md bg-red-800 p-4 sm:relative">
+        <h1 className="absolute bottom-2 z-10 font-quicksand text-sm font-bold leading-snug text-zinc-50">
+          Get great offers!
+        </h1>
+        <Image
+          src={"/assets/popup.svg"}
+          height={120}
+          width={120}
+          alt="popup"
+          className="absolute left-[-8px] top-[-8px]"
+        />
       </div>
     </div>
   );

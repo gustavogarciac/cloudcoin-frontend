@@ -33,10 +33,12 @@ export default function RootLayout({
         <body
           className={`${lato.variable} ${quicksand.variable} h-screen w-screen font-lato`}
         >
-          <div className="flex h-full w-full flex-col">
-            <div className="flex h-full w-full">
+          <div className="flex h-screen w-full flex-col">
+            <div className="flex min-h-screen w-full">
               <Sidebar />
-              <div className="w-full bg-zinc-50 px-8">{children}</div>
+              <div className="min-h-screen w-full bg-zinc-50 px-8">
+                {children}
+              </div>
             </div>
             <Bottombar />
           </div>
